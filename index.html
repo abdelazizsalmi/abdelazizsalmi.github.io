@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+<title>Portfolio – Abdel Aziz Salmi</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7fb;--card:#fff;--text:#1d2433;--muted:#5b6478;--accent:#4f46e5;--accent2:#06b6d4;--border:#e3e6ef}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1320;--card:#181d2f;--text:#eef0f7;--muted:#9aa3b8;--accent:#818cf8;--accent2:#22d3ee;--border:#2a3048}}
+:root[data-theme="dark"]{--bg:#0f1320;--card:#181d2f;--text:#eef0f7;--muted:#9aa3b8;--accent:#818cf8;--accent2:#22d3ee;--border:#2a3048}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--card);border-bottom:1px solid var(--border)}
+nav{max-width:1000px;margin:auto;display:flex;flex-wrap:wrap;gap:4px;align-items:center;padding:10px 16px}
+.logo{font-weight:700;color:var(--accent);margin-right:auto;font-size:1.1rem}
+nav a{color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:8px;font-size:.92rem}
+nav a:hover,nav a.active{background:var(--accent);color:#fff}
+main{max-width:1000px;margin:auto;padding:32px 16px 60px}
+.page{display:none;animation:fade .3s}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);margin:0 0 8px}
+h2{margin:0 0 20px;font-size:1.7rem;border-left:5px solid var(--accent);padding-left:12px}
+h3{margin:0 0 6px}
+.hero{text-align:center;padding:50px 10px}
+.avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 18px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:2.8rem;color:#fff;font-weight:700}
+.hero p{color:var(--muted);max-width:600px;margin:10px auto}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;border:0;padding:11px 22px;border-radius:10px;font-size:1rem;cursor:pointer;margin:6px}
+.btn.alt{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.timeline{border-left:3px solid var(--accent);padding-left:20px;margin-left:6px}
+.timeline .card{position:relative}
+.timeline .card::before{content:"";position:absolute;left:-30px;top:24px;width:14px;height:14px;border-radius:50%;background:var(--accent2);border:3px solid var(--bg)}
+.date{color:var(--accent);font-weight:600;font-size:.88rem}
+.muted{color:var(--muted)}
+.bar{height:9px;background:var(--border);border-radius:9px;overflow:hidden;margin:6px 0 14px}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:9px}
+.tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:2px 12px;font-size:.8rem;margin:2px 4px 2px 0;color:var(--muted)}
+form{display:grid;gap:14px}
+label{font-weight:600;font-size:.92rem}
+input,textarea{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;margin-top:4px}
+input:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:.85rem}
+/* ===== EFFETS ===== */
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+background:radial-gradient(circle at 20% 25%,color-mix(in srgb,var(--accent) 35%,transparent),transparent 40%),
+radial-gradient(circle at 80% 70%,color-mix(in srgb,var(--accent2) 30%,transparent),transparent 40%);
+filter:blur(40px);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(6%,-5%) scale(1.15) rotate(8deg)}}
+header{background:color-mix(in srgb,var(--card) 70%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav a{position:relative;transition:color .25s,background .25s,transform .25s}
+nav a:hover{transform:translateY(-2px)}
+nav a.active{box-shadow:0 6px 18px -4px var(--accent)}
+.hero h1{background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+.avatar{position:relative;animation:float 4s ease-in-out infinite;box-shadow:0 10px 40px -8px var(--accent)}
+.avatar::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--accent2);animation:ring 2.4s ease-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes ring{from{transform:scale(.9);opacity:.9}to{transform:scale(1.35);opacity:0}}
+.hero p{animation:rise .8s .2s both}.hero .btn{animation:rise .8s .4s both}
+.card{background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.card:hover{transform:translateY(-8px) scale(1.015);border-color:var(--accent);
+box-shadow:0 18px 40px -14px var(--accent),0 0 0 1px var(--accent)}
+.page.active .card{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.page.active .card:nth-child(2){animation-delay:.1s}.page.active .card:nth-child(3){animation-delay:.2s}.page.active .card:nth-child(4){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+h2{background:linear-gradient(90deg,var(--text),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;border-image:linear-gradient(var(--accent),var(--accent2)) 1}
+.btn{position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;box-shadow:0 8px 22px -8px var(--accent)}
+.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 28px -8px var(--accent)}
+.btn::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::after{left:130%}
+.btn.alt:hover{background:var(--accent);color:#fff}
+.page.active .bar span{transform-origin:left;animation:grow 1.3s .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes grow{from{transform:scaleX(0)}}
+.bar span{box-shadow:0 0 12px var(--accent2)}
+.tag{transition:all .25s}.tag:hover{background:var(--accent);color:#fff;transform:translateY(-2px) rotate(-2deg)}
+.timeline{border-image:linear-gradient(var(--accent),var(--accent2)) 1}
+.timeline .card::before{box-shadow:0 0 0 0 var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+input,textarea{transition:box-shadow .25s,transform .25s}
+input:focus,textarea:focus{box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent);transform:translateY(-1px)}
+::selection{background:var(--accent);color:#fff}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ===== THEME PERSONA 5 + JOUR/NUIT ===== */
+:root[data-theme="night"]{--bg:#0b0b0d;--card:#15151a;--text:#fff;--muted:#b9b9c4;--accent:#e60012;--accent2:#fff;--border:#fff;--dot:rgba(230,0,18,.2)}
+:root[data-theme="day"]{--bg:#f3f3f3;--card:#fff;--text:#0b0b0d;--muted:#444;--accent:#e60012;--accent2:#0b0b0d;--border:#0b0b0d;--dot:rgba(230,0,18,.16)}
+h1,h2,h3,.logo,.btn,nav a,.date{font-family:"Anton",Impact,"Arial Black",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.06em}
+#sky{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.sky-bg{position:absolute;inset:0;transition:opacity 1.6s}
+.sky-night{background:linear-gradient(180deg,#000,#1a0004 60%,#4a0008)}
+.sky-day{background:linear-gradient(180deg,#fff,#ffe3e3 60%,#ffb3b8)}
+[data-theme="night"] .sky-day,[data-theme="day"] .sky-night{opacity:0}
+#stars{position:absolute;inset:0;transition:opacity 1.6s}
+[data-theme="day"] #stars{opacity:0}
+#stars i{position:absolute;border-radius:50%;background:#fff;animation:tw 3s ease-in-out infinite alternate}
+@keyframes tw{from{opacity:.15}to{opacity:1}}
+.orb{position:absolute;border-radius:50%;transition:transform 1.9s cubic-bezier(.6,0,.2,1)}
+.sun{width:130px;height:130px;left:8vw;top:14vh;background:radial-gradient(circle,#e60012 0 55%,#fff 56% 60%,#e60012 61%);box-shadow:0 0 60px 10px rgba(230,0,18,.5)}
+.sun::before{content:"";position:absolute;inset:-45px;z-index:-1;border-radius:50%;background:repeating-conic-gradient(rgba(230,0,18,.55) 0 5deg,transparent 5deg 18deg);animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.moon{width:110px;height:110px;right:8vw;top:12vh;background:radial-gradient(circle at 35% 35%,#fff,#e6e6e6 60%,#b5b5b5);box-shadow:0 0 50px 12px rgba(255,255,255,.3),0 0 0 6px rgba(230,0,18,.6)}
+[data-theme="night"] .sun{transform:translateY(115vh) rotate(180deg)}
+[data-theme="day"] .moon{transform:translateY(115vh) rotate(-180deg)}
+body::before{inset:0;filter:none;background:radial-gradient(var(--dot) 2px,transparent 2.5px) 0 0/16px 16px,linear-gradient(115deg,transparent 60%,color-mix(in srgb,var(--accent) 20%,transparent) 60% 66%,transparent 66%);animation:dots 14s linear infinite}
+@keyframes dots{to{background-position:160px 160px,0 0}}
+header{background:#0b0b0d;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:4px solid var(--accent)}
+.logo{background:var(--accent);color:#fff;padding:2px 14px;transform:skew(-12deg);-webkit-text-fill-color:#fff}
+nav a{color:#ddd;transform:skew(-12deg);border-radius:0}
+nav a:hover{transform:skew(-12deg) translateY(-2px);background:#fff;color:#000}
+nav a.active{background:var(--accent);color:#fff;box-shadow:4px 4px 0 #fff}
+.tg{background:#fff;color:#000;border:0;width:40px;height:34px;font-size:1.1rem;cursor:pointer;transform:skew(-12deg);margin-left:6px;transition:background .25s,transform .25s}
+.tg:hover{background:var(--accent);color:#fff;transform:skew(-12deg) rotate(15deg) scale(1.1)}
+h2{display:inline-block;background:var(--accent);-webkit-text-fill-color:#fff;color:#fff;border:0;border-image:none;padding:4px 24px 4px 16px;transform:skew(-10deg) rotate(-1.5deg);box-shadow:6px 6px 0 var(--accent2);margin-bottom:26px}
+.hero h1{background:none;-webkit-text-fill-color:var(--text);color:var(--text);animation:none;transform:skew(-8deg) rotate(-2deg);text-shadow:4px 4px 0 var(--accent);font-size:clamp(2rem,6vw,3.6rem)}
+.hero::before{content:"";position:absolute;left:50%;top:10%;width:min(520px,90%);height:70%;transform:translateX(-50%) skew(-12deg) rotate(-3deg);background:var(--accent);opacity:.16;z-index:-1}
+.hero{position:relative}
+.avatar{border-radius:0;background:var(--accent);clip-path:polygon(0 10%,90% 0,100% 85%,10% 100%);box-shadow:none;font-family:"Anton",Impact,sans-serif}
+.avatar::after{display:none}
+.card{background:var(--card);backdrop-filter:none;-webkit-backdrop-filter:none;border:3px solid var(--border);border-radius:0;box-shadow:7px 7px 0 var(--accent);transform:rotate(-.5deg)}
+.grid .card:nth-child(even){transform:rotate(.6deg)}
+.card:hover,.grid .card:nth-child(even):hover{transform:rotate(0) translate(-4px,-6px);border-color:var(--border);box-shadow:12px 12px 0 var(--accent)}
+.page.active .card{animation-fill-mode:backwards}
+.date{color:var(--accent);font-size:1rem}
+.btn{clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);border-radius:0;padding:12px 30px;box-shadow:none;background:var(--accent);color:#fff}
+.btn.alt{background:var(--text);color:var(--bg);border:0}
+.btn:hover{transform:scale(1.07) rotate(-1deg);box-shadow:none}.btn.alt:hover{background:var(--accent);color:#fff}
+.tag{border-radius:0;transform:skew(-10deg);background:var(--text);color:var(--bg);border:0;padding:2px 12px}
+.tag:hover{background:var(--accent);color:#fff;transform:skew(-10deg) translateY(-2px)}
+.bar{height:12px;border-radius:0;transform:skew(-20deg);background:color-mix(in srgb,var(--text) 22%,transparent)}
+.bar span{background:var(--accent);border-radius:0;box-shadow:none}
+.timeline,.timeline{border-image:none;border-left:5px solid var(--accent)}
+.timeline .card::before{border-radius:0;transform:rotate(45deg);background:var(--text);border:3px solid var(--accent);animation:none}
+input,textarea{border:2px solid var(--border);border-radius:0;background:var(--card);color:var(--text)}
+input:focus,textarea:focus{outline:none;box-shadow:5px 5px 0 var(--accent);transform:translate(-2px,-2px)}
+footer{border-top:4px solid var(--accent);background:#0b0b0d;color:#bbb}
+#wipe{position:fixed;inset:0;z-index:50;pointer-events:none;transform:translateX(-130%) skewX(-18deg);background:linear-gradient(90deg,#fff 0 12%,#000 12% 30%,#e60012 30%)}
+#wipe.go{animation:wipe 1s cubic-bezier(.7,0,.3,1)}
+@keyframes wipe{0%{transform:translateX(-130%) skewX(-18deg)}42%,55%{transform:translateX(0) skewX(-18deg)}100%{transform:translateX(130%) skewX(-18deg)}}
+/* pied de page toujours en bas */
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1 0 auto;width:100%}
+footer{margin-top:auto}
+/* footer en bas */
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1 0 auto;width:100%}
+footer{margin-top:auto;width:100%;flex-shrink:0}
+</style>
+</head>
+<body>
+<div id="sky"><div class="sky-bg sky-night"></div><div class="sky-bg sky-day"></div><div id="stars"></div><div class="orb sun"></div><div class="orb moon"></div></div>
+<div id="wipe"></div>
+<header><nav>
+<span class="logo">&lt;Abdel Aziz Salmi/&gt;</span>
+<a href="#accueil" data-p="accueil">Accueil</a>
+<a href="#parcours" data-p="parcours">Parcours</a>
+<a href="#competences" data-p="competences">Compétences</a>
+<a href="#projets" data-p="projets">Projets</a>
+<a href="#veille" data-p="veille">Veille</a>
+<a href="#contact" data-p="contact">Contact</a>
+<button class="tg" id="tg" aria-label="Changer jour / nuit">☀</button>
+</nav></header>
+
+<main>
+<!-- ACCUEIL -->
+<section class="page" id="accueil">
+<div class="hero">
+<div class="avatar">AS</div>
+<h1>Bonjour, je suis Abdel Aziz Salmi</h1>
+<p>Titulaire d'un Baccalauréat professionnel, passionné par les réseaux et le développement. Bienvenue sur mon portfolio : retrouvez mon parcours, mes expériences, mes compétences, mes projets et ma veille technologique.</p>
+<a class="btn" href="#projets">Voir mes projets</a>
+<a class="btn alt" href="#contact">Me contacter</a>
+</div>
+</section>
+
+<!-- PARCOURS -->
+<section class="page" id="parcours">
+<h2>Mon parcours scolaire</h2>
+<div class="timeline">
+<div class="card"><span class="date">2022 – 2025</span><h3>Baccalauréat professionnel – Mention Assez bien</h3><p class="muted">Lycée Clément Ader – Tournan-en-Brie</p></div>
+<div class="card"><span class="date">2018 – 2022</span><h3>Brevet des collèges</h3><p class="muted">Collège Eugène Delacroix – Roissy-en-Brie</p></div>
+</div>
+<h2 style="margin-top:40px">Expériences professionnelles</h2>
+<div class="timeline">
+<div class="card"><span class="date">11/2024 – 12/2024</span><h3>Fiber Pro</h3><p class="muted">Croissy-sur-Seine</p>
+<p>Accompagnement et assistance des employés expérimentés, contribution à plusieurs projets en apportant une aide opérationnelle :</p>
+<span class="tag">Installation et raccordement de fibres optiques</span><span class="tag">Soudures</span><span class="tag">Tests de continuité</span><span class="tag">Mesures de signal</span></div>
+<div class="card"><span class="date">04/2024 – 05/2024</span><h3>Fiber Pro</h3><p class="muted">Croissy-sur-Seine</p>
+<p>Découverte des métiers et du fonctionnement de l'entreprise, accompagnement d'un salarié dédié dans son travail quotidien :</p>
+<span class="tag">Réalisation d'une baie réseau</span><span class="tag">Câblage réseau sur plusieurs étages</span><span class="tag">Nouveau magasin Lidl (Paris)</span></div>
+<div class="card"><span class="date">11/2023 – 12/2023</span><h3>FH Réseaux</h3><p class="muted">Saint-Augustin</p>
+<p>Accompagnement de plusieurs salariés sur différents sites :</p>
+<span class="tag">Installation et raccordement de câbles RJ45</span><span class="tag">Outillage de câblage réseau</span><span class="tag">Organisation du câblage</span><span class="tag">Normes de sécurité</span></div>
+</div>
+</section>
+
+<!-- COMPETENCES -->
+<section class="page" id="competences">
+<h2>Mes compétences</h2>
+<div class="grid">
+<div class="card"><h3>🌐 Réseau</h3>
+<div class="bar"><span style="width:80%"></span></div>
+<span class="tag">Fibre optique</span><span class="tag">Soudures</span><span class="tag">Câblage RJ45</span><span class="tag">Baie réseau</span><span class="tag">Mesures de signal</span><span class="tag">Tests de continuité</span></div>
+<div class="card"><h3>💻 Développement</h3>
+<div class="bar"><span style="width:55%"></span></div>
+<span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+<div class="card"><h3>🇬🇧 Anglais</h3>
+<div class="bar"><span style="width:60%"></span></div>
+<p class="muted">Lecture de documentations techniques et communication professionnelle.</p></div>
+</div>
+</section>
+
+<!-- PROJETS -->
+<section class="page" id="projets">
+<h2>Mes projets</h2>
+<div class="grid">
+<div class="card"><h3>Projet 1 – Titre</h3><p class="muted">Description : contexte, objectif et ce que tu as réalisé.</p><span class="tag">PHP</span><span class="tag">MySQL</span><br><br><a class="btn alt" href="#">Voir le projet</a></div>
+<div class="card"><h3>Projet 2 – Titre</h3><p class="muted">Description : contexte, objectif et ce que tu as réalisé.</p><span class="tag">Linux</span><span class="tag">Réseau</span><br><br><a class="btn alt" href="#">Voir le projet</a></div>
+<div class="card"><h3>Projet 3 – Titre</h3><p class="muted">Description : contexte, objectif et ce que tu as réalisé.</p><span class="tag">JavaScript</span><br><br><a class="btn alt" href="#">Voir le projet</a></div>
+</div>
+</section>
+
+<!-- VEILLE -->
+<section class="page" id="veille">
+<h2>Veille informatique</h2>
+<div class="card"><h3>Thème choisi</h3><p class="muted">Ex. : cybersécurité, intelligence artificielle, cloud… Explique pourquoi ce sujet t'intéresse et son lien avec ta formation.</p></div>
+<div class="grid">
+<div class="card"><h3>Sources suivies</h3><p class="muted">ANSSI, CERT-FR, Zataz, LeMagIT, Korben, Reddit r/sysadmin…</p></div>
+<div class="card"><h3>Outils</h3><p class="muted">Flux RSS (Feedly), alertes Google, newsletters, Mastodon / LinkedIn.</p></div>
+</div>
+<h3 style="margin:20px 0 10px">Derniers articles</h3>
+<div class="card"><span class="date">JJ/MM/AAAA</span><h3>Titre de l'article</h3><p class="muted">Résumé en 2-3 lignes et ce que tu en retiens. <a href="#" style="color:var(--accent)">Source</a></p></div>
+<div class="card"><span class="date">JJ/MM/AAAA</span><h3>Titre de l'article</h3><p class="muted">Résumé en 2-3 lignes et ce que tu en retiens. <a href="#" style="color:var(--accent)">Source</a></p></div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+<h2>Contact</h2>
+<div class="grid">
+<div class="card"><h3>Mes coordonnées</h3>
+<p>📧 <a href="mailto:abdelaziz.salmi2007@gmail.com" style="color:var(--accent)">abdelaziz.salmi2007@gmail.com</a></p>
+<p>📍 Roissy-en-Brie (77), France</p>
+<p>🔗 <a href="https://www.linkedin.com/in/abdel-aziz-salmi-800207395/" target="_blank" rel="noopener" style="color:var(--accent)">LinkedIn</a> · <a href="#" style="color:var(--accent)">GitHub</a></p></div>
+<div class="card"><h3>Envoyer un message</h3>
+<form id="f">
+<div><label for="n">Nom</label><input id="n" required></div>
+<div><label for="e">Email</label><input id="e" type="email" required></div>
+<div><label for="s">Sujet</label><input id="s" required></div>
+<div><label for="m">Message</label><textarea id="m" rows="5" required></textarea></div>
+<button class="btn" type="submit">Envoyer</button>
+</form></div>
+</div>
+</section>
+</main>
+<footer>© 2026 Abdel Aziz Salmi – Portfolio</footer>
+
+<script>
+const links=document.querySelectorAll('nav a'),pages=document.querySelectorAll('.page');
+function show(){
+  const id=(location.hash||'#accueil').slice(1);
+  const ok=document.getElementById(id)?id:'accueil';
+  pages.forEach(p=>p.classList.toggle('active',p.id===ok));
+  links.forEach(a=>a.classList.toggle('active',a.dataset.p===ok));
+  window.scrollTo(0,0);
+}
+addEventListener('hashchange',show);show();
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=i=>encodeURIComponent(document.getElementById(i).value);
+  const body=v('m')+encodeURIComponent('\n\nDe : ')+v('n')+encodeURIComponent(' ('+document.getElementById('e').value+')');
+  location.href='mailto:abdelaziz.salmi2007@gmail.com?subject='+v('s')+'&body='+body;
+});
+</script>
+<script>
+(function(){
+const r=document.documentElement,tg=document.getElementById('tg'),w=document.getElementById('wipe'),st=document.getElementById('stars');
+for(let i=0;i<70;i++){const e=document.createElement('i'),z=1+Math.random()*2.5;e.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*75+'%;width:'+z+'px;height:'+z+'px;animation-delay:'+Math.random()*3+'s';st.appendChild(e);}
+function set(t){r.dataset.theme=t;tg.textContent=t==='night'?'☀':'☾';}
+const h=new Date().getHours();r.dataset.theme='night';requestAnimationFrame(()=>setTimeout(()=>set(h>=7&&h<19?'day':'night'),60));
+tg.addEventListener('click',()=>{w.classList.remove('go');void w.offsetWidth;w.classList.add('go');setTimeout(()=>set(r.dataset.theme==='night'?'day':'night'),420);});
+})();
+</script>
+</body>
+</html>
